@@ -5,13 +5,13 @@
         <div class="container-fluid">
             <a href="#" class="navbar-brand">My Vue</a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li v-for="(page, index) in publishedPages" class="nav-item" :key="index">
-                    <navbar-link
-                      :page='page'
-                      :isActive="activePage === index"
-                      @click.prevent="navLinkClick(index)"
-                    ></navbar-link>
-                </li>
+                <navbar-link
+                    v-for="(page, index) in publishedPages" class="nav-item" :key="index"
+                    :index="index"
+                    :page='page'
+                    :isActive="activePage === index"
+                    @activated="$emit('activated')"
+                ></navbar-link>
             </ul>
             <form class="d-flex">
                 <button
@@ -41,7 +41,7 @@ export default {
             return filteredPages;
         }
     },
-    props: ['pages', 'activePage', 'navLinkClick'],
+    props: ['pages', 'activePage'],
     data() {
         return {
             theme: 'light',

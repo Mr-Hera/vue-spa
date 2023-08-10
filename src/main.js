@@ -11,9 +11,11 @@ const app = createApp(App)
 app.use(router);
 
 // avails global events
-app.config.globalProperties.$bus = $bus;
+// app.config.globalProperties.$bus = $bus;
+app.provide('$bus', $bus);
 
 // avails access to global data store
-app.config.globalProperties.$pages = $pages;
+// app.config.globalProperties.$pages = $pages;
+app.provide('$pages', $pages);
 
 app.mount('#app');
